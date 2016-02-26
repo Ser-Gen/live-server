@@ -106,6 +106,10 @@ for (var i = process.argv.length - 1; i >= 2; --i) {
 		setTimeout(liveServer.shutdown, 500);
 		process.argv.splice(i, 1);
 	}
+	else if (arg == "--init") {
+		var cfgTmpl = fs.readFileSync(path.join(__dirname, 'live-server-cfg-tmpl.json'));
+		process.argv.splice(i, 1);
+	}
 }
 
 if (process.argv[2]) {
@@ -114,6 +118,12 @@ if (process.argv[2]) {
 
 // Patch paths
 var cwd = process.cwd();
+
+if (cfgTmpl) {
+	fs.writeFileSync(path.join(cwd, '.live-server.json'), cfgTmpl);
+	process.exit();
+}
+
 if (opts.watch) {
 	opts.watch = opts.watch.map(function(relativePath) {
 		return path.join(cwd, relativePath);
