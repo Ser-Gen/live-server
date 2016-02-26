@@ -57,6 +57,7 @@ Command line parameters:
 * `--htpasswd=PATH` - Enables http-auth expecting htpasswd file located at PATH
 * `--help | -h` - display terse usage hint and exit
 * `--version | -v` - display version and exit
+* `--init` - creates config template in CWD
 
 Default options:
 
